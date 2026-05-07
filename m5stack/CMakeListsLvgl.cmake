@@ -129,7 +129,8 @@ list(APPEND MICROPY_SOURCE_PORT
 )
 
 if (
-    BOARD_TYPE STREQUAL "cores3" 
+    BOARD_TYPE STREQUAL "cores3"
+    OR BOARD_TYPE STREQUAL "energybean_cores3"
     OR BOARD_TYPE STREQUAL "core2" 
     OR BOARD_TYPE STREQUAL "paper" 
     OR BOARD_TYPE STREQUAL "papers3" 
@@ -232,7 +233,7 @@ list(APPEND IDF_COMPONENTS
     esp_mm
 )
 
-if (M5_CAMERA_MODULE_ENABLE AND BOARD_TYPE STREQUAL "cores3")
+if (M5_CAMERA_MODULE_ENABLE AND (BOARD_TYPE STREQUAL "cores3" OR BOARD_TYPE STREQUAL "energybean_cores3"))
 list(APPEND IDF_COMPONENTS
     esp-dl
     human_face_detect
@@ -286,7 +287,7 @@ if(CONFIG_IDF_TARGET_ARCH STREQUAL "xtensa")
 set(MICROPY_CROSS_FLAGS -march=xtensawin)
 endif()
 
-if (M5_CAMERA_MODULE_ENABLE AND BOARD_TYPE STREQUAL "cores3")
+if (M5_CAMERA_MODULE_ENABLE AND (BOARD_TYPE STREQUAL "cores3" OR BOARD_TYPE STREQUAL "energybean_cores3"))
 target_compile_definitions(${MICROPY_TARGET} PUBLIC
     USE_OMV=1
 )

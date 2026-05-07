@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: 2026 M5Stack Technology CO LTD
+#
+# SPDX-License-Identifier: MIT
+
+CONFIG_FREERTOS_ENABLE_BACKWARD_COMPATIBILITY=y
+
+# for component/esp32-camera
+CONFIG_SCCB_SOFTWARE_SUPPORT=y

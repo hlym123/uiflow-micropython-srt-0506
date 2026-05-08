@@ -50,7 +50,6 @@ class AtomS3R_CAM_Startup(Startup):
         timeout: int = 60,
     ) -> None:
         self.show_mac()
-
         if super().connect_network(
             ssid=ssid,
             pswd=pswd,
@@ -91,3 +90,4 @@ class AtomS3R_CAM_Startup(Startup):
                 print("Local IP: " + super().local_ip())
         else:
             self.show_error("Not Found", "Use Burner setup")
+

@@ -13,7 +13,7 @@ endif()
 include(${CMAKE_CURRENT_LIST_DIR}/m5utils/m5utils.cmake)
 
 if (M5_CAMERA_MODULE_ENABLE)
-    if (BOARD_TYPE STREQUAL "cores3")
+    if (BOARD_TYPE STREQUAL "cores3" OR BOARD_TYPE STREQUAL "energybean_cores3")
         # Add OMV modules
         include(${CMAKE_CURRENT_LIST_DIR}/omv/micropython.cmake)
     else()
@@ -22,7 +22,7 @@ if (M5_CAMERA_MODULE_ENABLE)
     endif()
 endif()
 
-if (BOARD_TYPE STREQUAL "atoms3r_cam")
+if (BOARD_TYPE STREQUAL "atoms3r_cam" OR BOARD_TYPE STREQUAL "energybean_atoms3r_cam")
     include(${CMAKE_CURRENT_LIST_DIR}/omv/omv_atoms3r_cam.cmake)
 endif()
 

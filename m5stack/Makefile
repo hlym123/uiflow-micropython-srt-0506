@@ -52,7 +52,12 @@ boards := \
 	M5STACK_StickS3:sticks3          \
 	M5STACK_Unit_PoEP4:unit_poep4    \
 	M5STACK_StampS3Bat:stamps3bat    \
-	M5STACK_StampP4:stampp4
+	M5STACK_StampP4:stampp4			 \
+	EnergyBean_Fire:energybean_fire       \
+	EnergyBean_StickS3:energybean_sticks3 \
+	EnergyBean_CoreS3:energybean_cores3   \
+	EnergyBean_AtomS3R_Cam:energybean_atoms3r_cam \
+	EnergyBean_AtomS3_Lite:energybean_atoms3-lite \
 
 define find_board
 $(if $(filter $(1):%,$(boards)),$(word 2,$(subst :, ,$(filter $(1):%,$(boards)))),none)
@@ -101,11 +106,16 @@ BOARD_TYPE_DEF := \
 	sticks3     \
 	unit_poep4  \
 	stamps3bat  \
-	stampp4
+	stampp4     \
+	energybean_fire    \
+	energybean_sticks3 \
+	energybean_cores3  \
+	energybean_atoms3r_cam \
+	energybean_atoms3-lite
 
 # Select the board type to build, default is None
 # This value affects which folder in the "./fs/system/" directory is pack into "fs-system.bin"
-# If use default value, it means no directory will pack into "fs-system.bin"
+# If use default value, it means no directory will pack into , "fs-system.bin"
 BOARD_TYPE ?= $(call find_board,$(BOARD))
 
 ifneq ($(filter $(BOARD_TYPE),$(BOARD_TYPE_DEF)),)

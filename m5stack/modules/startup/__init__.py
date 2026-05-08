@@ -135,7 +135,7 @@ def _is_psram():
     return True if sum > 520 * 1024 else False
 
 
-def startup(boot_opt, timeout: int = 60) -> None:
+def startup(boot_opt, timeout: int = 60) -> None:  # noqa: C901
     M5.begin()
     # Read saved Wi-Fi information from NVS
     nvs = esp32.NVS("uiflow")
@@ -212,10 +212,14 @@ def startup(boot_opt, timeout: int = 60) -> None:
             atoms3r = AtomS3R_Startup()
             atoms3r.startup(ssid, pswd, timeout=timeout)
         elif board_id == M5.BOARD.M5AtomS3R_CAM:
-            from .atoms3r_cam import AtomS3R_CAM_Startup
-
-            atoms3r = AtomS3R_CAM_Startup()
-            atoms3r.startup(ssid, pswd, timeout=timeout)
+            try:
+                from .energybean_atoms3r_cam import AtomS3R_CAM_Startup
+                atoms3r = AtomS3R_CAM_Startup()
+                # atoms3r.startup(ssid, pswd, timeout=timeout)
+            except ImportError:
+                from .atoms3r_cam import AtomS3R_CAM_Startup
+                atoms3r = AtomS3R_CAM_Startup()
+                atoms3r.startup(ssid, pswd, timeout=timeout)
         elif board_id == M5.BOARD.M5AtomEchoS3R:
             from .atom_echos3r import AtomEchoS3R_Startup
 
@@ -232,17 +236,24 @@ def startup(boot_opt, timeout: int = 60) -> None:
             atommatrix = AtomMatrix_Startup()
             atommatrix.startup(ssid, pswd, timeout=timeout)
         elif board_id == M5.BOARD.M5AtomS3Lite:
-            from .atoms3lite import AtomS3Lite_Startup
-
-            atoms3 = AtomS3Lite_Startup()
-            atoms3.startup(ssid, pswd, timeout=timeout)
+            try:
+                from .energybean_atoms3lite import AtomS3Lite_Startup
+                atoms3 = AtomS3Lite_Startup()
+                # atoms3.startup(ssid, pswd, timeout=timeout)
+            except ImportError:
+                from .atoms3lite import AtomS3Lite_Startup
+                atoms3 = AtomS3Lite_Startup()
+                atoms3.startup(ssid, pswd, timeout=timeout)
         elif board_id == M5.BOARD.M5StampS3:
             from .stamps3 import StampS3_Startup
 
             stamps3 = StampS3_Startup()
             stamps3.startup(ssid, pswd, timeout=timeout)
         elif board_id == M5.BOARD.M5StackCoreS3:
-            from .cores3 import CoreS3_Startup
+            try:
+                from .energybean_cores3 import CoreS3_Startup
+            except ImportError:
+                from .cores3 import CoreS3_Startup
 
             cores3 = CoreS3_Startup()
             cores3.startup(ssid, pswd, timeout=timeout)
@@ -267,16 +278,18 @@ def startup(boot_opt, timeout: int = 60) -> None:
             stickcplus2 = StickCPlus_Startup()
             stickcplus2.startup(ssid, pswd, timeout=timeout)
         elif board_id == M5.BOARD.M5Stack:
-            if _is_psram():
-                from .fire import Fire_Startup
-
-                fire = Fire_Startup()
-                fire.startup(ssid, pswd, timeout=timeout)
-            else:
-                from .basic import Basic_Startup
-
-                basic = Basic_Startup()
-                basic.startup(ssid, pswd, timeout=timeout)
+            try:
+                from .energybean_fire import Fire_Startup
+            except ImportError:
+                try:
+                    from .fire import Fire_Startup
+                except ImportError:
+                    from .basic import Basic_Startup
+                    basic = Basic_Startup()
+                    basic.startup(ssid, pswd, timeout=timeout)
+                    return
+            fire = Fire_Startup()
+            fire.startup(ssid, pswd, timeout=timeout)
         elif board_id == M5.BOARD.M5Capsule:
             from .capsule import Capsule_Startup
 
@@ -375,7 +388,10 @@ def startup(boot_opt, timeout: int = 60) -> None:
             nesson1 = NessoN1_Startup()
             nesson1.startup(ssid, pswd, timeout=timeout)
         elif board_id == M5.BOARD.M5StickS3:
-            from .sticks3 import StickS3_Startup
+            try:
+                from .energybean_sticks3 import StickS3_Startup
+            except ImportError:
+                from .sticks3 import StickS3_Startup
 
             sticks3 = StickS3_Startup()
             sticks3.startup(ssid, pswd, timeout=timeout)

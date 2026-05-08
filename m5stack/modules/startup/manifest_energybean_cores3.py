@@ -1,0 +1,18 @@
+package(
+    "startup",
+    (
+        "__init__.py",
+        "energybean_cores3/__init__.py",
+        "energybean_cores3/app_base.py",
+        "energybean_cores3/framework.py",
+        "energybean_cores3/apps/__init__.py",
+        "energybean_cores3/apps/app_list.py",
+        "energybean_cores3/apps/app_run.py",
+        "energybean_cores3/apps/dev.py",
+        "energybean_cores3/apps/ezdata.py",
+        "energybean_cores3/apps/settings.py",
+        "energybean_cores3/apps/status_bar.py",
+    ),
+    base_path="..",
+    opt=3,
+)

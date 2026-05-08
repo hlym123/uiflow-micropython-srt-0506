@@ -33,10 +33,12 @@ NETWORK_TIMEOUT = 60
 if __name__ == "__main__":
     from startup import startup
 
-    nvs = esp32.NVS("uiflow")
-    try:
-        boot_option = nvs.get_u8("boot_option")
-    except:
-        boot_option = 1  # default
+    # nvs = esp32.NVS("uiflow")
+    # try:
+    #     boot_option = nvs.get_u8("boot_option")
+    # except:
+    #     boot_option = 1  # default
 
+    boot_option = 1
     startup(boot_option, NETWORK_TIMEOUT)
+

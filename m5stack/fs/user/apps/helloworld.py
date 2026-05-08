@@ -1,17 +1,15 @@
-# SPDX-FileCopyrightText: 2024 M5Stack Technology CO LTD
+# SPDX-FileCopyrightText: 2026 M5Stack Technology CO LTD
 #
 # SPDX-License-Identifier: MIT
-
-# apps/helloworld.py
 
 import M5
 from M5 import Lcd
 
 M5.begin()
 
-print("Hello M5Stack!")
+print("Hello World!")
 
-text = "M5Stack"
+text = "Hello World!"
 Lcd.clear(0)
 Lcd.setFont(M5.Lcd.FONTS.DejaVu18)
 Lcd.setTextColor(0x169FDD, 0x000000)

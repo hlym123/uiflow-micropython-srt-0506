@@ -8,15 +8,11 @@ import os
 from flashbdev import sys_bdev, vfs_bdev
 import esp32
 
-uiflow_str = f"""
-       _  __ _               
- _   _(_)/ _| | _____      __
-| | | | | |_| |/ _ \ \ /\ / /
-| |_| | |  _| | (_) \ V  V / 
- \__,_|_|_| |_|\___/ \_/\_/  {esp32.firmware_info()[3]}
+energybean_str = f"""
+EnergyBean {esp32.firmware_info()[3]}
 """
-print(uiflow_str)
-del uiflow_str
+print(energybean_str)
+del energybean_str
 
 # monut flash file system
 try:

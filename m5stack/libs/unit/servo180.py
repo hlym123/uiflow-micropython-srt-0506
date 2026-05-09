@@ -44,7 +44,8 @@ class Servo180Unit:
         self._count_low = count_low
         self._count_high = count_high
         self._last_duty = self._count_low
-        self.pwm = machine.PWM(pin, freq=freq, duty_ns=self._count_low * 1000)
+        self.pwm = machine.PWM(pin, freq=freq)
+        self.pwm.duty_ns(self._count_low * 1000)
 
     def set_angle(self, angle: int, wait=True) -> None:
         """Set the servo to a specific angle.
@@ -86,7 +87,6 @@ class Servo180Unit:
 
             servo_0.set_duty(1500)  # Set duty to 1500 microseconds
         """
-        print(f"Setting duty_ns: {duty}")
         self.pwm.duty_ns(duty * 1000)
         if wait:
             # 60 degree = 0.1s
